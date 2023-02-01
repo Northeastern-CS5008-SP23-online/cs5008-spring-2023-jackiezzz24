@@ -52,9 +52,10 @@ int dequeue(int *arr)
 	}	
 	int i;
 	int num = arr[0];
-	for (i = 0; i < N; i++){
+	for (i = 0; i < rear; i++){
 		arr[i] = arr[i + 1];
 	}
+	rear--;
 	return num;
 
 }
