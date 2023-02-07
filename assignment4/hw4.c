@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Jiaqi Zhao
+// email: zhao.jiaqi2@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,7 +38,7 @@ int main(){
   for (i=0; i < ((LIMIT/20)+1); i++) {
     for (j=0; j<20; j++) {
       if (i*20+j < LIMIT) {
-	printf("%.2d ",source[i*20+j]);
+	      printf("%.2d ",source[i*20+j]);
       }
     }
     printf("\n");
@@ -49,7 +49,17 @@ int main(){
   for (i=0; i<LIMIT; i++) {
 
     // INSERT YOUR CODE HERE
-    
+    smallest = 0;
+    while (!valid[smallest]) {
+      smallest++;
+    }
+    for (j = smallest; j<LIMIT; j++) { 
+      if (valid[j] && source[j] < source[smallest]) {
+        smallest = j;
+      }
+    }
+    valid[smallest] = false;
+    dest[i] = source[smallest];
   }
   
   //print out sorted array in rows of 10
@@ -57,7 +67,15 @@ int main(){
   
 
   // INSERT YOUR CODE HERE
-    
+  for (i=0; i < ((LIMIT/10)+1); i++) {
+    for (j=0; j<10; j++) {
+      if (i*10+j < LIMIT) {
+	      printf("%.2d ",dest[i*10+j]);
+      }
+    }
+    printf("\n");
+  }
+  printf("\n");  
  
   
   
