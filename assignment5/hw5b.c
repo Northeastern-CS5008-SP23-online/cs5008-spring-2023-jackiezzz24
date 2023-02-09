@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Jiaqi Zhao
+// email: zhao.jiaqi2@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +37,32 @@ char upperChar(char c){
 void quicky(char* data, int left, int right) {
 
   // ADD YOUR CODE HERE
-
+  if (right <= left) {
+    return;
+  }
+  char pivot = data[right];
+  char res[right - left + 1];
+  int i;
+  int j = 0;
+  int k = right - left;
+  for (i = left; i < right; i++) {
+    if (upperChar(data[i]) <= upperChar(pivot)) {
+      res[j] = data[i];
+      j++;
+    } 
+    else {
+      res[k] = data[i];
+      k--;
+    }
+  }
+  res[j] = pivot;
+  int m = 0;
+  for (i = left; i <= right; i++) {
+    data[i] = res[m];
+    m++;
+  }
+  quicky(data, left, left + j - 1);
+  quicky(data, left + j + 1, right);
   return;
 }
 
