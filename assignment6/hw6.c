@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Jiaqi Zhao
+// email: zhao.jiaqi2@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,13 +73,13 @@ void insertTNode (tnode_t* rp, char* s) {
       c = getFirstChar(s);
 
       if (c == '\x01') {
-	printf("ILLEGAL CHARACTER IN INSTRUCTION STRING\n");
+	      printf("ILLEGAL CHARACTER IN INSTRUCTION STRING\n");
       }
       
       // if instruction does not tell us to insert null, create a new tree node and add it as left child, recurse
       if (c != '\n') {
-	rp->left = newTNode(c);
-	insertTNode(rp->left, s);
+        rp->left = newTNode(c);
+        insertTNode(rp->left, s);
       }    
     }
 
@@ -89,13 +89,13 @@ void insertTNode (tnode_t* rp, char* s) {
       c = getFirstChar(s);
 
       if (c == '\x01') {
-	printf("ILLEGAL CHARACTER IN INSTRUCTION STRING\n");
+	      printf("ILLEGAL CHARACTER IN INSTRUCTION STRING\n");
       }
 
       // if instruction does not tell us to insert null, create a new tree node and add it as right child, recurse
       if (c != '\n') {
-	rp->right = newTNode(c);
-	insertTNode(rp->right, s);
+        rp->right = newTNode(c);
+        insertTNode(rp->right, s);
       }   
     }
   }
@@ -244,26 +244,56 @@ void freeQueue(queue_t* qp) {
 
 void preorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-
+  if (np == NULL) {
+    return;
+  }
+  printf("%c", np->data);
+  preorder(np->left);
+  preorder(np->right);
   return;
 }
 
 void inorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-  
+  if (np == NULL) {
+    return;
+  }
+  inorder(np->left);
+  printf("%c", np->data);
+  inorder(np->right);
   return;
 }
 
 void postorder (tnode_t* np) {
   // INSERT YOUR CODE HERE
-  
+  if (np == NULL) {
+    return;
+  }
+  postorder(np->left);
+  postorder(np->right);
+  printf("%c", np->data);
   return;
 }
 
 
 void breadthFirst (tnode_t* root) {
   // INSERT YOUR CODE HERE
-  
+  tnode_t* temp = NULL;
+  queue_t* queue = newQueue();
+  if (root != NULL) {
+    enqueue(queue, root);
+    while (!isEmpty(queue)){
+      temp = dequeue(queue);
+      printf("%c", temp->data);
+      if (temp->left != NULL) {
+        enqueue(queue, temp->left);
+      }
+      if (temp->right != NULL) {
+        enqueue(queue, temp->right);
+      }
+    }
+  }
+  freeQueue(queue);
   return;
 }
 
@@ -321,7 +351,7 @@ int main() {
   printf("\n\n");
 
   freeTNode(rootp);
-
+  
   return 0;
 }
 
