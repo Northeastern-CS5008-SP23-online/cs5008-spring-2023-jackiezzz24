@@ -1,5 +1,5 @@
-/*---enter your name here----*/
-/*---enter your email here-----*/
+/*---Jiaqi Zhao----*/
+/*---zhao.jiaqi2@northeastern.edu-----*/
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -123,10 +123,21 @@ void freenode(node_t *p){
 /* Insert a node like a Binary search tree, then convert it into a AVL tree using four cases*/
 node_t* Insert(node_t* root, int data)
 {
-
-    
     
     //insert your code here
+    if (root == NULL) {
+        return NewNode(data);
+    }
+    if (root->data > data) {
+        root->left = Insert(root->left, data);
+    } else if (root->data < data){
+        root->right = Insert(root->right, data);
+    } else {
+        // printf("Cannot enter duplicate node.\n");
+        // exit(0);
+        return root;
+    }
+
 
 
 /*updating the height after insertion of the node*/
