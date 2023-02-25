@@ -48,6 +48,7 @@ void enqueue(int data, int *arr)
 int dequeue(int *arr)
 {   
 	if (isempty()){
+        printf("Queue is empty.\n");
 		return 0;	
 	}	
 	int i;
