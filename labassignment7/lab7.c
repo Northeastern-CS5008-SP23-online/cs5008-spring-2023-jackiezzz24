@@ -1,6 +1,6 @@
 
-/*Enter your name here*/
-/* Enter your email here*/
+/*Jiaqi Zhao*/
+/*zhao.jiaqi2@northeastern.edu*/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
@@ -34,9 +34,20 @@ node_t *insert(struct node *front)
     scanf("%d",&(temp->priority));
     int pri=temp->priority;
 
- /*insert your code here*/
-
-
+    /*insert your code here*/
+    if (front == NULL || pri > front->priority) {
+        temp->next = front;
+        front = temp;
+        return front;
+    } else {
+        node_t* current = front;
+        while (current->next != NULL && current->next->priority > pri) {
+            current = current->next;
+        }
+        temp->next = current->next;
+        current->next = temp; 
+    }
+    return front;
 }
 
 /* Delete the node which is present at the front*/
@@ -44,6 +55,18 @@ node_t *delete(struct node *front)
 {
     
     /*Insert your code here*/
+    if (front == NULL) {
+        printf("There is no patient reocrd.\n");
+    } else {
+        node_t *temp;
+        temp = front;
+        printf("Deleted Record is: %d\n",temp->reg);
+        printf("Patient's name is: %s\n",temp->name);
+        printf("Patient's age: %d\n",temp->age);
+        front = front->next;
+        free(temp);
+    }
+    return front;
             
 }
 
