@@ -79,7 +79,6 @@ int hash3(char* s) {
   long productOfS = 1;
 
   //**** YOUR CODE GOES HERE ****
-  int i;
   productOfS = (int)s[0] * (int)s[1];
   return ((int)(productOfS % HASHSIZE));
 }
