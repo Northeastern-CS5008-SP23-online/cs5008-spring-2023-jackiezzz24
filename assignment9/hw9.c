@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Jiaqi Zhao
+// email: zhao.jiaqi2@northeastern.edu
 
 
 #include <stdio.h>
@@ -42,7 +42,7 @@ void printGraphAsList(graph_t g, int size){
   for (i=0; i<size; i++) {
     for (j=0; j<size; j++) {
       if (g[i][j]) {
-	printf("%d -> %d\n",i,j);
+	      printf("%d -> %d\n",i,j);
       } 
     }
   }
@@ -225,10 +225,21 @@ int main () {
   // add start node to work queue
   enqueue(q,0);
 
-  printf("\nBREADTH FIRST TRAFERSAL\n");
+  printf("\nBREADTH FIRST TRAVERSAL\n");
   while (!isEmpty(q)) {
 
     // INSERT YOUR CODE HERE
+    current = dequeue(q);
+    done[current] = true;
+    printf("NODE: %d\n", current);
+    for (j = 0; j < GSIZE; j++) {
+      if (E[current][j] == true) {
+        if (!done[j]) {
+          enqueue(q, j);
+          done[j] = true;
+        }
+      }
+    }
     
   }
 
