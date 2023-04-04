@@ -1,5 +1,5 @@
-/* Enter your name here*/
-/* Enter your email here*/
+/* Jiaqi Zhao*/
+/* zhao.jiaqi2@northeastern.edu*/
 
 #include<stdio.h>
 #define MAXN 50       /* largest number of books */
@@ -71,32 +71,39 @@ void partition(int s[], int n, int k)
     
     
     /*Insert your code here*/
-    
+    p[0] = 0;
+    for (i = 1; i <= n; i++) {
+        p[i] = p[i - 1] + s[i];
+        m[i][1] = p[i];   
+    }
+    for (j = 1; j <= k; j++) {
+            m[1][j] = s[1];
+    }
   
     
     
-/* 2 to k partitions*/
-for (i=2; i<=n; i++)
-    
-for (j=2; j<=k; j++)
-{
-    m[i][j]=MAXINT; /*initialize infinity*/
-            
-    for (x=1; x<=i-1; x++)
+    /* 2 to k partitions*/
+    for (i=2; i<=n; i++)
+        
+    for (j=2; j<=k; j++)
     {
-    cost = max(m[x][j-1],p[i]-p[x]);
-       //cost = max(m[x][j-1],sum(s,x+1,i));
-        if(m[i][j]>cost)
-            {
-            m[i][j]=cost;
-/* position of dividers is stored in matrix d*/
-            d[i][j] = x;
+        m[i][j]=MAXINT; /*initialize infinity*/
+                
+        for (x=1; x<=i-1; x++)
+        {
+        cost = max(m[x][j-1],p[i]-p[x]);
+        //cost = max(m[x][j-1],sum(s,x+1,i));
+            if(m[i][j]>cost)
+                {
+                m[i][j]=cost;
+    /* position of dividers is stored in matrix d*/
+                d[i][j] = x;
+                }
             }
-        }
-}
-    print_matrix(m,n,k);
-    printf("Partition of the books are:\n");
-    reconstruct_partition(s,d,n,k);        /* print book partition */
+    }
+        print_matrix(m,n,k);
+        printf("Partition of the books are:\n");
+        reconstruct_partition(s,d,n,k);        /* print book partition */
 }
 
 
