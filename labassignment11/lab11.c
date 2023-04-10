@@ -1,5 +1,5 @@
-//Enter your name here
-//Enter your email here
+//Jiaqi Zhao
+//zhao.jiaqi2@northeastern.edu
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -12,8 +12,15 @@ void *philosopher(void *x)
     int* a=(int*)x;
     int n=*a;
     
-       /*-----Insert your code here----*/
-    
+    /*-----Insert your code here----*/
+    printf("Philosopher %d is thinking.\n", n + 1);  
+    pthread_mutex_lock(&chopstick[n]);
+    pthread_mutex_lock(&chopstick[(n + 1) % 5]);
+    printf("Philosopher %d is eating using chopstick[%d] and chopstick[%d].\n", n + 1, n, (n + 1) % 5);  
+    sleep(1);
+    pthread_mutex_unlock(&chopstick[n]);
+    pthread_mutex_unlock(&chopstick[(n + 1) % 5]);
+    printf("Philosopher %d finished eating.\n", n + 1);  
     
 }
 
